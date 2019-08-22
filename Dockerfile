@@ -7,7 +7,7 @@ RUN apt-get update ;\
 
 WORKDIR /root
 
-COPY --from=chifleytech/sql-cd /root/app.jar /root/
+COPY --from=chifleytech/sqlcd-service-build /root/app.jar /root/
 
 RUN mkdir /root/template
 RUN mkdir /root/template/conf

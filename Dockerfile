@@ -24,7 +24,7 @@ COPY drivers /root/template/drivers
 
 COPY run.sh /root/run.sh
 RUN chmod 766 run.sh
-EXPOSE 8080
+EXPOSE 7080
 EXPOSE 9090
 
 CMD /root/run.sh

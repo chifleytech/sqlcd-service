@@ -1,3 +1,5 @@
+FROM chifleytech/sqlcd-service-build:latest
+
 FROM openjdk:8-jdk
 
 ENV LOG_LEVEL="info"
@@ -7,7 +9,7 @@ RUN apt-get update ;\
 
 WORKDIR /root
 
-COPY --from=chifleytech/sqlcd-service-build /root/app.jar /root/
+COPY --from=0 /root/app.jar /root/
 
 RUN mkdir /root/template
 RUN mkdir /root/template/conf

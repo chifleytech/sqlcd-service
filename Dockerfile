@@ -2,8 +2,6 @@ FROM chifleytech/sqlcd-service-build:latest
 
 FROM openjdk:8-jdk
 
-ENV LOG_LEVEL="info"
-
 RUN apt-get update ;\
     apt-get install -y tzdata
 
@@ -20,8 +18,7 @@ RUN mkdir /root/drivers
 RUN mkdir /root/logs
 
 COPY application.conf /root/template/conf/
-COPY logback-info.xml /root/template/conf/
-COPY logback-warn.xml /root/template/conf/
+COPY logback.xml /root/template/conf/logback.xml.template
 COPY drivers /root/template/drivers
 
 COPY run.sh /root/run.sh

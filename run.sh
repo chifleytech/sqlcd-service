@@ -9,9 +9,12 @@ if [ -z "$(ls -A /root/conf)" ]; then
     cp -r /root/template/conf/* /root/conf
 fi
 
+cp -f /root/conf/logback.xml.template /root/conf/logback.xml
 
-nohup /usr/local/openjdk-8/jre/bin/java \
--Dlogback.configurationFile=/root/conf/logback-$LOG_LEVEL.xml \
+sed -i 's/_log_level_/'"$LOG_LEVEL"'/g' /root/conf/logback.xml
+
+/usr/local/openjdk-8/jre/bin/java \
+-Dlogback.configurationFile=/root/conf/logback.xml \
 -Dconfig.file=/root/conf/application.conf \
 -Dcom.sun.management.jmxremote.rmi.port=9090 \
 -Dcom.sun.management.jmxremote=true \
@@ -21,4 +24,4 @@ nohup /usr/local/openjdk-8/jre/bin/java \
 -Dcom.sun.management.jmxremote.local.only=false \
 -Djava.rmi.server.hostname=localhost \
 -cp /root/drivers/*:/root/app.jar \
-com.simontuffs.onejar.Boot > /root/logs/out.log 2>&1
+com.simontuffs.onejar.Boot

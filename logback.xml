@@ -20,7 +20,7 @@
             <onMismatch>ACCEPT</onMismatch>
         </filter>
     </appender>
-    <appender name="ERROR_FILE" class = "ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>
             logs/error.log
         </file>
@@ -61,17 +61,26 @@
         </filter>
     </appender>
 
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <!-- additivity=false ensures seperate ata only goes to the seperate log -->
     <logger name="audit" level="INFO" additivity="false">
         <appender-ref ref="AUDIT"/>
     </logger>
 
-
-
     <root level="ERROR">
-        <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="ERROR_FILE"/>
     </root>
-    <root level="INFO">
-        <appender-ref ref="FILE" />
+    <root level="_log_level_">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

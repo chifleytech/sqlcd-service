@@ -22,6 +22,6 @@ sed -i 's/_log_level_/'"$LOG_LEVEL"'/g' /root/conf/logback.xml
 -Dcom.sun.management.jmxremote.ssl=false \
 -Dcom.sun.management.jmxremote.authenticate=false \
 -Dcom.sun.management.jmxremote.local.only=false \
--Djava.rmi.server.hostname=app.sqlcd \
+-Djava.rmi.server.hostname=$HOSTNAME \
 -cp /root/drivers/*:/root/app.jar \
 com.simontuffs.onejar.Boot

@@ -22,6 +22,7 @@ COPY logback.xml /root/template/conf/logback.xml.template
 COPY drivers /root/template/drivers
 
 COPY start-sqlcd.sh /root/start-sqlcd.sh
+COPY LICENCE /root/LICENCE
 RUN chmod 766 start-sqlcd.sh
 EXPOSE 7080
 EXPOSE 9090

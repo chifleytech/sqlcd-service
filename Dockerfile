@@ -7,7 +7,7 @@ RUN apt-get update ;\
 
 WORKDIR /root
 
-COPY --from=0 /root/app.jar /root/
+COPY --from=0 /root/app.jar /root/sqlcd.jar
 
 RUN mkdir /root/template
 RUN mkdir /root/template/conf
@@ -18,13 +18,21 @@ RUN mkdir /root/drivers
 RUN mkdir /root/logs
 
 COPY application.conf /root/template/conf/
-COPY logback.xml /root/template/conf/logback.xml.template
+COPY logback.xml /root/template/conf/
 COPY drivers /root/template/drivers
 
 COPY start-sqlcd.sh /root/start-sqlcd.sh
+COPY stop-sqlcd.sh /root/stop-sqlcd.sh
 COPY LICENCE /root/LICENCE
+
 RUN chmod 766 start-sqlcd.sh
+RUN chmod 766 stop-sqlcd.sh
+
 EXPOSE 7080
 EXPOSE 9090
+
+# deploy to public repo
+RUN mkdir /bare-metal-deploy
+RUN cp -r /root/* /bare-metal-deploy
 
 CMD /root/start-sqlcd.sh

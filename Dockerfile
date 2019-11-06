@@ -23,7 +23,7 @@ COPY drivers /root/template/drivers
 
 COPY start-sqlcd.sh /root/start-sqlcd.sh
 COPY stop-sqlcd.sh /root/stop-sqlcd.sh
-COPY LICENCE /root/LICENCE
+COPY LICENSE /root/LICENCE
 
 RUN chmod 766 start-sqlcd.sh
 RUN chmod 766 stop-sqlcd.sh

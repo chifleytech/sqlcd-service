@@ -1,4 +1,4 @@
-FROM chifleytech/sqlcd-service-build:1.1.2
+FROM chifleytech/sqlcd-service-build:1.1.3
 
 FROM openjdk:8-jdk
 

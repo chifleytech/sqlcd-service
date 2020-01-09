@@ -20,6 +20,10 @@ if [[ -z "${LOG_LEVEL}" ]]; then
   export LOG_LEVEL="INFO"
 fi
 
+if [[ -z "${GIT_POLL_TIME}" ]]; then
+  export GIT_POLL_TIME="5000"
+fi
+
 if [ -z "$(ls -A ${SQLCD_HOME}/drivers)" ]; then
     cp -r ${SQLCD_HOME}/template/drivers/* ${SQLCD_HOME}/drivers
 fi
@@ -31,6 +35,7 @@ fi
 export ESCAPED_SQLCD_HOME=$(echo ${SQLCD_HOME} | sed 's/\//\\\//g')
 sed -i '' -e 's/${LOG_LEVEL}/'"${LOG_LEVEL}"'/g' ${SQLCD_HOME}/conf/logback.xml
 sed -i '' -e 's/${SQLCD_HOME}/'"${ESCAPED_SQLCD_HOME}"'/g' ${SQLCD_HOME}/conf/application.conf
+sed -i '' -e 's/${GIT_POLL_TIME}/'"${GIT_POLL_TIME}"'/g' ${SQLCD_HOME}/conf/application.conf
 
 $JAVA_BIN \
 -Dlogback.configurationFile=${SQLCD_HOME}/conf/logback.xml \

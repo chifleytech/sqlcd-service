@@ -1,4 +1,4 @@
-FROM chifleytech/sqlcd-service-build:master
+FROM chifleytech/sqlcd-service-build:datalake_demo
 
 FROM openjdk:8-jdk
 
